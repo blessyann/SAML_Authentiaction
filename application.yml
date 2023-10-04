@@ -1,0 +1,10 @@
+// Create a yml file at the path src/main/resources/application.yml
+
+spring:
+  security:
+    saml2:
+      relyingparty:
+        registration:
+          okta:
+            assertingparty:
+              metadata-uri: <metadata-uri>
