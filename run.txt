@@ -1,0 +1,8 @@
+How to run the Application
+step1: Generate a project using Spring Initializer
+create controller, html and yml files
+Build the Maven run the project
+open localhost:8080 in a browser see the okta home page..
+
+Second phase
+need to add login features and call back features in the SAML Application..
