@@ -1,9 +1,60 @@
-How to run the Application
+SAML Authentication Application Project
+Guide to setup the project
+Step 1: - Downloading Software’s needed for SAML 2.0 Application
+  •	NetBeans IDE (version 12.6)
+  •	OpenJDK (version 17.0.8.1)
+  •	Apache Maven (Version 3.9.4)
 
-step1: Generate a project using Spring Initializer
-Step2: create controller, html and yml files
-Step3: Build the Maven run the project
-Step4: open localhost:8080 in a browser see the okta home page..
+Step 2: Generate Spring Boot project from Spring Initializer
+  •	https://start.spring.io/
+  •	Add dependencies Spring Web, Spring Security and Thymeleaf (You can more relevant dependencies too)
+  •	Choose project, Spring boot, packaging and java fields using the below screenshots.
+  •	Create Project Metadata table with your customized package name or default data given in Spring Initializer
+  •	Click the Generate button.
+  •	Unzip the file from downloads and copy that file and put it in a folder.
 
-Second phase
-need to add login, Logout and call back features in the SAML Application..
+Step3: Opening the project in NetBeans.
+  •	Open NetBeans IDE click on File tab on Left and click Open Project
+  •	Select the unzipped Spring boot project from the folder on the Open Project screen.
+  •	Your file name field should be like “c:\Users\...\SpringBootProject Folder.
+  •	Click the Open Project button make sure that the project is opened in NetBeans by looking on Projects tab on left.
+
+Step4: Add HTML, Controller and Property file to enable the MVC Architecture
+  •	Add HomeController.Java file on src/main/java/” Package Name”/HomeController.Java
+  •	Create HTML file on the path src/main/resources/”home.html” 
+  •	Create Yaml file on the path src/main/resources/application.yml
+
+Step5: Build and Run Projects
+  •	Environment variable setting for Java and Maven
+  •	On Cmd Prompt run the command “mvn clean install”
+  •	If ant testing file issues type” mvn clean install -DSkipTests”
+Run the java jar by using “java -jar -Dapple.awt.UIElement="true" target/”ProjectName”-0.0.1-SNAPSHOT.jar -h”
+
+Step 6: Metadata URL
+  •	For demo we are using Okta developer page as metadata url
+  •	Create an Okta developer account with your personal email.
+  •	After login click on Applications tab on the left side of the page
+  •	Click on the Create App Integration Button on the right side of the page.
+  •	A new window will appear select SAML 2.0 click next.
+  •	 A new window appears on the General setting tab fill the App name box and click next.
+  •	Fill out the Single sign-on URL : http://localhost:8080/login/saml2/sso/okta
+  •	Check the box Use this for Recipient URL and Destination URL
+  •	Fill out the Audience URL : http://localhost:8080/saml2/service-provider-metadata/okta
+  •	Click next and select I’m an okta customer adding an internal app.
+  •	Select This is an internal app that we have created.
+  •	Click Finish.
+  •	Click on Sign On tab Scroll down to the SAML Signing Certificates and go to SHA-2 > Actions > View IdP Metadata. Right click and copy the menu item link paste this link on Application.yml file <metadata-url>:       field.
+  •	Run the application and check localhost:8080 on browser you can login to okta page.
+page.
+
+Step7: Add Logout Feature
+  •	 First, edit your application on Okta and navigate to General > SAML Settings > Edit.
+  •	Configure SAML step and Show Advanced Settings. Before you can enable single logout, you’ll have to create and upload a certificate to sign the outgoing logout request.
+  •	Create a private key and certificate and put in src/main/resources directory.
+  •	Configure signing and single logout in application.yml
+  •	Upload the local.crt to your Okta app. Select Enable Single Logout and use the following values:
+  •	Fill the Single Logout URL: http://localhost:8080/logout/saml2/slo
+  •	Fill SP Issuer: http://localhost:8080/saml2/service-provider-metadata/okta
+  •	Run the application and check Logout is working..
+
+
