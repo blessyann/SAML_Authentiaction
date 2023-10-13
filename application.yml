@@ -8,3 +8,12 @@ spring:
           okta:
             assertingparty:
               metadata-uri: <metadata-uri>
+
+    // Add this lines on adding Logout feature
+     signing:
+            credentials:
+                - private-key-location: classpath:local.key
+                  certificate-location: classpath:local.crt
+            singlelogout:
+              binding: POST
+              response-url: "{baseUrl}/logout/saml2/slo"
