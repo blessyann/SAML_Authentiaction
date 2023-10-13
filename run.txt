@@ -56,5 +56,13 @@ Step7: Add Logout Feature
   •	Fill the Single Logout URL: http://localhost:8080/logout/saml2/slo
   •	Fill SP Issuer: http://localhost:8080/saml2/service-provider-metadata/okta
   •	Run the application and check Logout is working..
+Step 8: Customize Authorities
+  •	Edit your Okta app’s SAML settings and fill in the Group Attribute Statements section.
+    o	Name: groups
+    o	Name format: Unspecified
+    o	Filter: Matches regex and use  .* for the value.
+  •	Write SecurityConfiguration.java file in the path “src/main/java/com/example/demo/SecurityConfiguration.java”
+Restart the Applicatiuon and run.
+
 
 
